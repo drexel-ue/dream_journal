@@ -1,6 +1,10 @@
 # 🌌 Cosmic Twilight Dream Journal
 
 <p align="center">
+  <img src="assets/icon/app_icon.png" width="140" height="140" style="border-radius: 32px;" alt="Cosmic Twilight Dream Journal App Icon" />
+</p>
+
+<p align="center">
   <b>An immersive, high-contrast Flutter dream journal engineered for lucidity induction, dream recall strengthening, and recurring sign exploration — featuring an interactive force-directed starlight constellation graph, vector sketch canvas, celestial calendar, and zero-pollution demo universe.</b>
 </p>
 
@@ -34,6 +38,15 @@ This application digitizes a guided two-page morning journal format into a celes
 ---
 
 ## 📱 Visual Feature Tour
+
+### 🌌 App Icon & Atmospheric Splash Screen
+
+| Graph-Inspired App Icon | Animated Cosmic Splash Screen |
+| :---: | :---: |
+| <img src="assets/icon/app_icon.png" width="300" style="border-radius: 40px;" alt="Cosmic App Icon" /> | <img src="screenshots/00_splash_screen.png" width="300" alt="Cosmic Splash Screen" /> |
+| *Luminous constellation nexus forming a crescent moon with cyan, violet, and gold nodes* | *Breathing starlight emblem, local Cinzel serif typography, and tap-to-skip fast morning entry* |
+
+---
 
 ### 📖 Guided Morning Capture: Part 1 — Dream Details
 
