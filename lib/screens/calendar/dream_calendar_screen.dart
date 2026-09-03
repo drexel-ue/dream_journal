@@ -126,12 +126,14 @@ class _DreamCalendarScreenState extends State<DreamCalendarScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        DateFormat('EEEE, MMMM d').format(selectedDate),
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: CosmicColors.lucidPurple,
+                      Expanded(
+                        child: Text(
+                          DateFormat('EEEE, MMMM d').format(selectedDate),
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: CosmicColors.lucidPurple,
+                          ),
                         ),
                       ),
                       Text(

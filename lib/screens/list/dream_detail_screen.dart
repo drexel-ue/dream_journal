@@ -95,11 +95,13 @@ class DreamDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        dateFormat.format(dream.date),
-                        style: const TextStyle(
-                          color: CosmicColors.textSecondary,
-                          fontSize: 13,
+                      Expanded(
+                        child: Text(
+                          dateFormat.format(dream.date),
+                          style: const TextStyle(
+                            color: CosmicColors.textSecondary,
+                            fontSize: 13,
+                          ),
                         ),
                       ),
                       if (dream.isLucid)
@@ -260,9 +262,11 @@ class DreamDetailScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.auto_awesome, size: 16, color: CosmicColors.celestialCyan),
                           SizedBox(width: 6),
-                          Text(
-                            'Symbols & Objects (Dream Signs)',
-                            style: TextStyle(fontSize: 13, color: CosmicColors.textSecondary),
+                          Expanded(
+                            child: Text(
+                              'Symbols & Objects (Dream Signs)',
+                              style: TextStyle(fontSize: 13, color: CosmicColors.textSecondary),
+                            ),
                           ),
                         ],
                       ),
