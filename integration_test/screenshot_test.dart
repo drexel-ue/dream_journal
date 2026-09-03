@@ -13,6 +13,7 @@ import 'package:dream_journal/screens/graph/node_detail_sheet.dart';
 import 'package:dream_journal/screens/list/dream_detail_screen.dart';
 import 'package:dream_journal/screens/list/dream_list_screen.dart';
 import 'package:dream_journal/screens/main_navigation_shell.dart';
+import 'package:dream_journal/screens/splash/splash_screen.dart';
 import 'package:dream_journal/services/demo_data_service.dart';
 import 'package:dream_journal/state/dream_provider.dart';
 import 'package:dream_journal/state/graph_provider.dart';
@@ -69,6 +70,11 @@ void main() {
 
     final demoDreams = DemoDataService.getDemoDreams();
     final sampleDream = demoDreams.firstWhere((d) => d.isLucid);
+
+    // 00 COSMIC SPLASH SCREEN
+    await tester.pumpWidget(buildAppWrapper(const SplashScreen(autoNavigate: false)));
+    await tester.pump(const Duration(milliseconds: 800));
+    await takeAppScreenshot('00_splash_screen');
 
     // 01 MORNING CAPTURE (PART 1: DETAILS - Top & Scrolled)
     await tester.pumpWidget(buildAppWrapper(NewEntryScreen(existingDream: sampleDream)));
