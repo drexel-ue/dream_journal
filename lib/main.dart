@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'database/app_database.dart';
-import 'screens/main_navigation_shell.dart';
+import 'screens/splash/splash_screen.dart';
 import 'state/dream_provider.dart';
 import 'state/graph_provider.dart';
 import 'theme/cosmic_theme.dart';
@@ -44,7 +44,7 @@ class DreamJournalApp extends StatelessWidget {
         title: 'Cosmic Dream Journal',
         debugShowCheckedModeBanner: false,
         theme: CosmicTheme.darkTheme,
-        home: const MainNavigationShell(),
+        home: const SplashScreen(),
       ),
     );
   }
