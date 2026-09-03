@@ -45,6 +45,26 @@ class _CosmicGraphScreenState extends State<CosmicGraphScreen> {
       ..scale(initialScale);
   }
 
+  void _zoomBy(double factor) {
+    final matrix = _transController.value.clone();
+    final media = MediaQuery.of(context).size;
+    final center = Offset(media.width / 2, media.height / 2);
+
+    final translation = matrix.getTranslation();
+    final currentScale = matrix.getMaxScaleOnAxis();
+    final targetScale = (currentScale * factor).clamp(0.2, 3.5);
+    final scaleRatio = targetScale / currentScale;
+
+    final newMatrix = Matrix4.identity()
+      ..translate(
+        center.dx - (center.dx - translation.x) * scaleRatio,
+        center.dy - (center.dy - translation.y) * scaleRatio,
+      )
+      ..scale(targetScale);
+
+    _transController.value = newMatrix;
+  }
+
   @override
   void dispose() {
     _transController.dispose();
@@ -80,6 +100,7 @@ class _CosmicGraphScreenState extends State<CosmicGraphScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: CosmicColors.background,
       appBar: AppBar(
         title: Text(
           'Dream Signs Constellation',
@@ -95,13 +116,25 @@ class _CosmicGraphScreenState extends State<CosmicGraphScreen> {
                 await graphProvider.setDemoMode(true);
               },
             ),
-          // Reset view
+          // Zoom In
+          IconButton(
+            tooltip: 'Zoom In',
+            icon: const Icon(Icons.zoom_in, color: CosmicColors.celestialCyan),
+            onPressed: () => _zoomBy(1.25),
+          ),
+          // Zoom Out
+          IconButton(
+            tooltip: 'Zoom Out',
+            icon: const Icon(Icons.zoom_out, color: CosmicColors.celestialCyan),
+            onPressed: () => _zoomBy(0.8),
+          ),
+          // Reset / Center view
           IconButton(
             tooltip: 'Center Constellation',
-            icon: const Icon(Icons.filter_center_focus, color: CosmicColors.celestialCyan),
+            icon: const Icon(Icons.filter_center_focus, color: CosmicColors.starlightGold),
             onPressed: _centerView,
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 6),
         ],
       ),
       body: Stack(

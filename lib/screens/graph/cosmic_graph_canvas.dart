@@ -50,16 +50,18 @@ class _CosmicGraphCanvasState extends State<CosmicGraphCanvas> {
       builder: (context, constraints) {
         return InteractiveViewer(
           transformationController: widget.transformationController,
-          boundaryMargin: const EdgeInsets.all(800),
-          minScale: 0.3,
-          maxScale: 3.0,
+          boundaryMargin: const EdgeInsets.all(1200),
+          minScale: 0.2,
+          maxScale: 3.5,
           constrained: false,
-          panEnabled: _draggedNode == null, // Allow canvas pan when not dragging a node
+          panEnabled: true,
+          scaleEnabled: true,
+          trackpadScrollCausesScale: true,
           child: SizedBox(
             width: _worldSize,
             height: _worldSize,
             child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
+              behavior: HitTestBehavior.deferToChild,
               onTapUp: (details) {
                 final node = _findNodeAt(details.localPosition);
                 if (node != null) {
@@ -107,6 +109,17 @@ class _CosmicPainter extends CustomPainter {
   final List<GraphNode> nodes;
   final List<GraphEdge> edges;
   final Offset center;
+
+  @override
+  bool? hitTest(Offset position) {
+    for (final node in nodes) {
+      final nodePos = center + Offset(node.x, node.y);
+      if ((position - nodePos).distance <= node.radius + 14) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   // Cache static ambient background stars
   static final List<Offset> _ambientStars = _generateStars();
