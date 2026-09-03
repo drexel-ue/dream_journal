@@ -22,7 +22,7 @@ void main() {
   final IntegrationTestWidgetsFlutterBinding binding =
       IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Capture screenshots on iOS Simulator', (WidgetTester tester) async {
+  testWidgets('Capture high-res and scrolling screenshots on iOS Simulator', (WidgetTester tester) async {
     // Initialize demo database
     final dbProvider = AppDatabase.demo;
     await dbProvider.resetDemoDatabase();
@@ -56,29 +56,40 @@ void main() {
       await binding.takeScreenshot(name);
     }
 
+    Future<void> takeScrollingScreenshots(
+      String baseName, {
+      double dragDistance = 600.0,
+      Offset dragStart = const Offset(15, 650),
+    }) async {
+      await takeAppScreenshot(baseName);
+      await tester.dragFrom(dragStart, Offset(0, -dragDistance));
+      await tester.pump(const Duration(milliseconds: 500));
+      await takeAppScreenshot('${baseName}_scrolled');
+    }
+
     final demoDreams = DemoDataService.getDemoDreams();
     final sampleDream = demoDreams.firstWhere((d) => d.isLucid);
 
-    // 01 MORNING CAPTURE (PART 1: DETAILS)
+    // 01 MORNING CAPTURE (PART 1: DETAILS - Top & Scrolled)
     await tester.pumpWidget(buildAppWrapper(NewEntryScreen(existingDream: sampleDream)));
-    await takeAppScreenshot('01_new_entry_details');
+    await takeScrollingScreenshots('01_new_entry_details', dragDistance: 550.0);
 
-    // 02 MORNING CAPTURE (PART 2: REFLECTION & SKETCH)
+    // 02 MORNING CAPTURE (PART 2: REFLECTION & SKETCH - Top & Scrolled)
     await tester.tap(find.text('2. Reflection & Sketch'));
     await tester.pump(const Duration(milliseconds: 400));
-    await takeAppScreenshot('02_new_entry_reflection');
+    await takeScrollingScreenshots('02_new_entry_reflection', dragDistance: 780.0);
 
-    // 03 DREAM CHRONICLE (FEED)
+    // 03 DREAM CHRONICLE (FEED - Top & Scrolled)
     await tester.pumpWidget(buildAppWrapper(const DreamListScreen()));
-    await takeAppScreenshot('03_dream_chronicle_feed');
+    await takeScrollingScreenshots('03_dream_chronicle_feed', dragDistance: 450.0, dragStart: const Offset(200, 650));
 
-    // 04 DREAM DETAIL VIEW
+    // 04 DREAM DETAIL VIEW (Top & Scrolled)
     await tester.pumpWidget(buildAppWrapper(DreamDetailScreen(dream: sampleDream)));
-    await takeAppScreenshot('04_dream_detail_view');
+    await takeScrollingScreenshots('04_dream_detail_view', dragDistance: 850.0);
 
-    // 05 DREAM CALENDAR
+    // 05 DREAM CALENDAR (Top & Scrolled)
     await tester.pumpWidget(buildAppWrapper(const DreamCalendarScreen()));
-    await takeAppScreenshot('05_dream_calendar');
+    await takeScrollingScreenshots('05_dream_calendar', dragDistance: 280.0, dragStart: const Offset(200, 650));
 
     // 06 COSMIC CONSTELLATION GRAPH
     await tester.pumpWidget(buildAppWrapper(const CosmicGraphScreen()));
