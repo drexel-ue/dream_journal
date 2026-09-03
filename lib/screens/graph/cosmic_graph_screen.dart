@@ -176,6 +176,7 @@ class _CosmicGraphScreenState extends State<CosmicGraphScreen> {
                 currentDate: graphProvider.activeCutoffDate,
                 visibleNodesCount: graphProvider.visibleNodes.length,
                 visibleEdgesCount: graphProvider.visibleEdges.length,
+                initialMinimized: true,
               ),
             ),
           ],

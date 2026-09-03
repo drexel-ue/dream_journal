@@ -58,97 +58,118 @@ class _TimelineScrubberState extends State<TimelineScrubber> {
     final maxText = widget.maxDate != null ? dateFormat.format(widget.maxDate!) : '';
 
     return AnimatedSize(
-      duration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 260),
       curve: Curves.easeInOutCubic,
-      child: GlassCard(
-        borderRadius: 20,
-        padding: _isMinimized
-            ? const EdgeInsets.symmetric(horizontal: 14, vertical: 8)
-            : const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: _isMinimized
-            ? _buildMinimizedBar(activeDateText)
-            : _buildExpandedControls(context, activeDateText, minText, maxText),
-      ),
+      child: _isMinimized
+          ? _buildMinimizedPill(activeDateText)
+          : _buildExpandedCard(context, activeDateText, minText, maxText),
     );
   }
 
-  Widget _buildMinimizedBar(String activeDateText) {
-    return InkWell(
-      onTap: _toggleMinimized,
-      borderRadius: BorderRadius.circular(20),
-      child: Row(
-        children: [
-          // Play/Pause button on mini bar
-          InkWell(
-            onTap: widget.onTogglePlay,
-            borderRadius: BorderRadius.circular(16),
+  Widget _buildMinimizedPill(String activeDateText) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16, bottom: 4),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: _toggleMinimized,
+            borderRadius: BorderRadius.circular(24),
             child: Container(
-              width: 32,
-              height: 32,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: const LinearGradient(
-                  colors: [CosmicColors.astralViolet, CosmicColors.celestialCyan],
+                color: const Color(0xCC0E1022), // 80% opacity translucent dark cosmic glass
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color: CosmicColors.astralViolet.withOpacity(0.4),
+                  width: 1.0,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: CosmicColors.astralViolet.withOpacity(0.4),
-                    blurRadius: 6,
+                    color: Colors.black.withOpacity(0.35),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
-              child: Icon(
-                widget.isPlaying ? Icons.pause : Icons.play_arrow,
-                color: Colors.white,
-                size: 18,
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          // Info summary
-          Expanded(
-            child: Row(
-              children: [
-                const Icon(Icons.timeline, size: 15, color: CosmicColors.astralViolet),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Text(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Play/Pause miniature circular button
+                  InkWell(
+                    onTap: widget.onTogglePlay,
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const LinearGradient(
+                          colors: [CosmicColors.astralViolet, CosmicColors.celestialCyan],
+                        ),
+                      ),
+                      child: Icon(
+                        widget.isPlaying ? Icons.pause : Icons.play_arrow,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // Date text
+                  Text(
                     activeDateText,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 11.5,
                       fontWeight: FontWeight.w600,
                       color: CosmicColors.textPrimary,
                     ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: CosmicColors.cardSurfaceHover,
-                    borderRadius: BorderRadius.circular(8),
+                  const SizedBox(width: 6),
+                  // Count badge
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                    decoration: BoxDecoration(
+                      color: CosmicColors.astralViolet.withOpacity(0.25),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      '${widget.visibleNodesCount}',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: CosmicColors.celestialCyan,
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    '${widget.visibleNodesCount} signs',
-                    style: const TextStyle(fontSize: 10, color: CosmicColors.celestialCyan),
+                  const SizedBox(width: 4),
+                  // Minimal chevron
+                  const Icon(
+                    Icons.keyboard_arrow_up,
+                    size: 18,
+                    color: CosmicColors.textMuted,
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          // Expand chevron button
-          IconButton(
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
-            tooltip: 'Expand Timeline Controls',
-            icon: const Icon(Icons.keyboard_arrow_up, size: 22, color: CosmicColors.textSecondary),
-            onPressed: _toggleMinimized,
-          ),
-        ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildExpandedCard(
+    BuildContext context,
+    String activeDateText,
+    String minText,
+    String maxText,
+  ) {
+    return GlassCard(
+      borderRadius: 20,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: _buildExpandedControls(context, activeDateText, minText, maxText),
     );
   }
 
