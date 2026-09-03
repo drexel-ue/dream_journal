@@ -35,12 +35,39 @@ This application digitizes a guided two-page morning journal format into a celes
 
 ## 📱 Visual Feature Tour
 
-### 📖 Guided Morning Journal Capture
+### 📖 Guided Morning Capture: Part 1 — Dream Details
 
-| Part 1: Dream Details | Part 2: Reflection & Sketch |
+| Dream Details (Top) | Dream Details (Scrolled) |
 | :---: | :---: |
-| <img src="screenshots/01_new_entry_details.png" width="360" alt="Morning Dream Details" /> | <img src="screenshots/02_new_entry_reflection.png" width="360" alt="Dream Reflection & Sketch" /> |
-| *Title, date picker, present-tense narrative, multi-select emotion chips, characters, and dream symbols* | *Chronological event order, waking life associations, lucidity toggle, and in-app drawing sketch box* |
+| <img src="screenshots/01_new_entry_details.png" width="360" alt="Morning Dream Details (Top)" /> | <img src="screenshots/01_new_entry_details_scrolled.png" width="360" alt="Morning Dream Details (Scrolled)" /> |
+| *Title, date picker, and present-tense narrative description* | *Multi-select emotion chips, figures/characters, dream sign symbols, and botanical laurel footer* |
+
+---
+
+### 🎨 Guided Morning Capture: Part 2 — Reflection & Vector Sketch Canvas
+
+| Reflection & Context (Top) | In-App Vector Sketch Canvas (Scrolled) |
+| :---: | :---: |
+| <img src="screenshots/02_new_entry_reflection.png" width="360" alt="Dream Reflection (Top)" /> | <img src="screenshots/02_new_entry_reflection_scrolled.png" width="360" alt="Dream Reflection & Sketch (Scrolled)" /> |
+| *Chronological actions, waking life associations, waking emotions, and lucidity toggle* | *Recall context, notes, and the interactive drawing canvas with color palette, stroke sizing, and undo* |
+
+---
+
+### 📜 Dream Chronicle Feed & Search
+
+| Chronicle Feed (Top) | Chronicle Feed (Scrolled) |
+| :---: | :---: |
+| <img src="screenshots/03_dream_chronicle_feed.png" width="360" alt="Dream Chronicle Feed (Top)" /> | <img src="screenshots/03_dream_chronicle_feed_scrolled.png" width="360" alt="Dream Chronicle Feed (Scrolled)" /> |
+| *Instant search across titles/tags, Lucid-only filter, active streak counter, and recent dream cards* | *Scrolled timeline revealing earlier entries, "No Recall" habit keeper cards, and sign badges* |
+
+---
+
+### 🔍 Comprehensive Dream Reader & Vector Artwork
+
+| Dream Narrative Reader (Top) | Reflection & Rendered Sketch (Scrolled) |
+| :---: | :---: |
+| <img src="screenshots/04_dream_detail_view.png" width="360" alt="Dream Detail View (Top)" /> | <img src="screenshots/04_dream_detail_view_scrolled.png" width="360" alt="Dream Detail View (Scrolled)" /> |
+| *Full narrative reader with golden lucidity badge, waking emotion tags, and symbol pills* | *Chronological moments, life associations, recall method notes, and embedded vector sketch rendering* |
 
 ---
 
@@ -49,16 +76,7 @@ This application digitizes a guided two-page morning journal format into a celes
 | Interactive Constellation Graph | Node Lucidity & Connection Sheet |
 | :---: | :---: |
 | <img src="screenshots/06_cosmic_constellation_graph.png" width="360" alt="Constellation Graph" /> | <img src="screenshots/07_node_detail_sheet.png" width="360" alt="Node Lucidity Sheet" /> |
-| *Real-time force-directed simulation, draggable starlight nodes, nebula connection links, and minimizable growth scrubber* | *Tapped node modal detailing total appearances, lucidity trigger percentage, and connected dream entries* |
-
----
-
-### 📜 Chronicle Feed & Comprehensive Reader
-
-| Dream Chronicle Feed | Comprehensive Dream Inspection |
-| :---: | :---: |
-| <img src="screenshots/03_dream_chronicle_feed.png" width="360" alt="Dream Chronicle Feed" /> | <img src="screenshots/04_dream_detail_view.png" width="360" alt="Dream Detail View" /> |
-| *Instant search across titles/descriptions/tags, Lucid-only filter chip, streak counter, and card summaries* | *Full narrative reader, reflection notes, waking emotions, symbol tags, and embedded sketch rendering* |
+| *Real-time force-directed simulation, draggable starlight nodes, nebula links, and collapsible growth scrubber* | *Tapped node modal detailing total appearances, lucidity trigger percentage, and connected dream entries* |
 
 ---
 
