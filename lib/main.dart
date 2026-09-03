@@ -10,6 +10,12 @@ import 'theme/cosmic_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Lock app orientation in portrait mode
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   // Set system UI overlay style for dark immersive experience
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
